@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= etiqueta %></title>
+    <%- include('Partials/head')%>
+  </head>
+  <body>
+    <%- include('Partials/navigation')%>
+
+    <main class="container py-5">
+      <h1>Bienvenidos a la vista de creación de usuario</h1>
+      <h2 class="mb-4">Gestión de Usuario</h2>
+
+      <form action="/autenticacion/registro" method="POST" id="formRegistro">
+        <!--======== PASO 1 ========-->
+        <section class="mb-5">
+          <h4>1. Datos personales (Identificación)</h4>
+          <div class="mb-3">
+            <label for="tipoDocumento">Tipo de Documento</label>
+            <select
+              name="tipoDocumento"
+              class="form-control"
+              id="tipoDocumento"
+              required
+            >
+              <option value="CEDULA">CÉDULA DE CIUDADANÍA</option>
+              <option value="TI">TARJETA DE IDENTIDAD</option>
+              <option value="CE">CÉDULA DE EXTRANJERÍA</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="numeroDocumento">Número del Documento</label>
+            <input
+              type="text"
+              name="numeroDocumento"
+              class="form-control"
+              id="numeroDocumento"
+              placeholder="Digite su Cédula"
+              required
+            />
+          </div>
+          <button type="button" class="btn btn-primary">Validar</button>
+        </section>
+
+        <!--====== PASO 2 ======-->
+        <section class="mb-5">
+          <h4>2. Datos personales y nombres</h4>
+          <p class="text-muted">
+            Ingrese sus nombres y apellidos tal como aparecen en su documento de
+            identificación
+          </p>
+
+          <div class="row">
+            <label>Digite su Nombre Completo</label>
+            <div class="col-md-6 mb-3">
+              <input
+                type="text"
+                name="primerNombre"
+                class="form-control"
+                id="primerNombre"
+                placeholder="Digite su Primer Nombre"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <input
+                type="text"
+                name="segundoNombre"
+                class="form-control"
+                id="segundoNombre"
+                placeholder="Digite su segundo Nombre"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <label>Digite su Apellido Completo</label>
+            <div class="col-md-6 mb-3">
+              <input
+                type="text"
+                name="primerApellido"
+                class="form-control"
+                id="primerApellido"
+                placeholder="Digite su Primer Apellido"
+                required
+              />
+            </div>
+            <div class="col-md-6 mb-3">
+              <input
+                type="text"
+                name="segundoApellido"
+                class="form-control"
+                id="segundoApellido"
+                placeholder="Digite su segundo Apellido"
+              />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="fechaNacimiento">Fecha de Nacimiento</label>
+            <input
+              type="date"
+              name="fechaNacimiento"
+              class="form-control"
+              id="fechaNacimiento"
+              required
+            />
+          </div>
+
+          <button type="button" class="btn btn-secondary">Atrás</button>
+          <button type="button" class="btn btn-primary">Continuar</button>
+        </section>
+
+        <!--====== PASO 3 ======-->
+        <section class="mb-5">
+          <h4>3. Correo Electrónico</h4>
+          <div class="mb-3">
+            <label for="correo">Correo Electrónico</label>
+            <input
+              type="email"
+              name="correo"
+              class="form-control"
+              id="correo"
+              placeholder="correo@gmail.com"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="confirmarcorreo">Confirmar Correo Electrónico</label>
+            <input
+              type="email"
+              name="confirmarcorreo"
+              class="form-control"
+              id="confirmarcorreo"
+              placeholder="Por favor confirmar correo electrónico"
+              required
+            />
+          </div>
+
+          <button type="button" class="btn btn-secondary">Atrás</button>
+          <button type="submit" class="btn btn-success">
+            Finalizar Registro
+          </button>
+        </section>
+      </form>
+    </main>
+
+    <script>
+      // Solo valida que los correos coincidan al enviar
+      document
+        .getElementById("formRegistro")
+        .addEventListener("submit", function (e) {
+          const correo = document.getElementById("correo").value;
+          const confirmar = document.getElementById("confirmarcorreo").value;
+          if (correo !== confirmar) {
+            e.preventDefault();
+            alert("Los correos electrónicos no coinciden");
+          }
+        });
+    </script>
+
+    <!--script de control para la vista local-->
+    <script>
+      function siguientePaso(pasoDestino) {
+        /// validaciones para opciones radidas de los pasos de avanzar
+        if (pasoDestino === 2) {
+          const doc = document.getElementById("nmeroDocumento").value;
+          if (doc) {
+            alert("por favor ingrese el numero de documento");
+            return;
+          }
+        }
+
+        //ocultar todos los pasos
+        document.getElementById("paso-1").classList.add("oculto");
+        document.getElementById("paso-2").classList.add("oculto");
+        document.getElementById("paso-3").classList.add("oculto");
+
+        // Mostrar el paso distinto
+        document
+          .getElementById("paso-" + pasoDestino)
+          .classList.remove("oculto");
+      }
+
+      function pasoAnterior(PasoDestino) {
+        document.getElementById("paso-1").classList.add("oculto");
+        document.getElementById("paso-2").classList.add("oculto");
+        document.getElementById("paso-3").classList.add("oculto");
+
+        document
+          .getElementById("paso-" + pasoDestino)
+          .classList.remove("oculto");
+      }
+    </script>
+    <%- include('Partials/footer') %>
+  </body>
+</html>

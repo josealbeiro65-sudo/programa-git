@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= etiqueta %></title>
+
+    <%- include('Partials/head')%>
+  </head>
+
+  <body>
+    <%- include('Partials/navigation') %>
+    <!-- Contenido Principal-->
+    <header
+      class="container vh-100 d-flex justify-content-center align-items-center">
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <img src="img/logopersonal.png" alt="" class="w-25" />
+        <h1 class="display-1 my-5 text-uppercase fw-bold text-white">Drogueria</h1>
+        <a href="/login" class="btn btn-primary w-25"> Inicio de Sesion </a>
+      </div>
+    </header>
+    <h1>Buenos dias Instructor son las <%= hora %></h1>
+
+    <%- include('Partials/footer') %>
+  </body>
+</html>

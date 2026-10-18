@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= etiqueta %></title>
+    <%- include('Partials/head')%>
+  </head>
+
+  <body>
+    <%- include('Partials/navigation')%>
+
+    <!-- Creaccion de Formulario -->
+
+    <div class="container vh-100 d-flex justify-content-center align-items-center">
+      <!-- Crea una tarjeta de Boostraps para contener el formulario, bg-dark es para que el fondo
+       del formulario sea de color oscuro... -->
+      <div class="card bg-dark text-white text-center">
+        <!-- se crea la cabeza de la tarjeta -->
+        <div class="card-header">
+          
+          <h3 class="justify-content-center align-items-center"> Escribenos </h3>
+          <div class="card-body text-star">
+            <form>
+              <div class="mb-3">
+                <label for="Nombre">Nombre "Requerido"</label>
+                <input type="text" placeholder="Por Favor Escriba su Nombre Completo" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="Nombre">Correo electronico "Requerido"</label>
+                <input type="text" placeholder="Correo electronico" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="Nombre">Asunto "Requerido"</label>
+                <input type="text" placeholder="Asunto" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="mensaje">Mensaje (Requerido)</label>
+                <textarea id="mensaje" name="mensaje" rows="3" class="form-control" placeholder="Por favor escriba un mensaje">
+                </textarea>
+              
+              </div>
+
+              <button type="submit">
+                Enviar
+              </button>
+              <button type="reset">
+                Limpiar
+              </button>
+                            
+
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  <body>
+    <%- include('Partials/footer') %>
+
+</html>
