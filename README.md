@@ -10,3 +10,5 @@ npm run dev
 ```
 
 Abre http://localhost:3000 en el navegador.
+
+hola mundo
